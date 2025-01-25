@@ -3,7 +3,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { Provider } from "react-redux";
 import store from "./utils/redux/store/store.ts";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +15,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
-    <App />
+    <RouterProvider router={router} />
   </Provider>
 );
