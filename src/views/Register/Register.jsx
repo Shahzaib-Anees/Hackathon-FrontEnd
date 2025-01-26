@@ -41,7 +41,7 @@ const Register = () => {
                 <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Register</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
-
+                    
                     {/* Username Field */}
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>

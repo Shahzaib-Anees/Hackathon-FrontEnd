@@ -2,12 +2,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
-import store from "./utils/redux/store/store.ts";
+import store from "./utils/redux/store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./views/Register/Register.jsx";
 import Login from "./views/Login/Login.jsx";
 import Hero from "./components/Hero/Hero.jsx";
-import LoanApplicationForm from "./components/LoanApplicationForm/LoanApplicationForm.jsx";
+import LoanForm from "./components/LoanForm/LoanForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/loanForm",
-        element: <LoanApplicationForm />
+        element: <LoanForm />
       }
     ],
   },
