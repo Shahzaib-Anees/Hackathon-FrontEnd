@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { setUser } from '../../utils/redux/slice/user.slice.js';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -24,6 +25,7 @@ const Register = () => {
             });
             if (response.status == 200) {
                 localStorage.setItem("accessToken", response.data.ACCESS_TOKEN);
+                dispatch(setUser(response.data?.data))
                 navigate("/login")
             }
             console.log(response.data)

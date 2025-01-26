@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // React Icons for password visibility toggle
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../utils/redux/slice/user.slice';
+import { setUser } from '../../utils/redux/slice/user.slice.js';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
