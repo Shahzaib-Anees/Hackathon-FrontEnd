@@ -19,7 +19,7 @@ const categorySice = createSlice({
     }
 })
 
-export const { setCategories } = categorySice.actions;
+export const { setCategories, setSelectedCategory } = categorySice.actions;
 
 export const getCategories = () => {
     return async (dispatch) => {
@@ -31,5 +31,18 @@ export const getCategories = () => {
             throw new Error(err)
         }
     }
+}
+
+const fetchSubCategories = (categoryTitle) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/v1/subCategory/findCategoryByParentCategory/${categoryTitle}`)
+            console.log(response.data.data);
+            dispatch(setCategories(response.data.data))
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
+
 }
 export default categorySice.reducer;

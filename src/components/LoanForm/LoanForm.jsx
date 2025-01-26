@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedCategory } from "../../utils/redux/slice/category.slice.js";
 
 const LoanForm = () => {
-    const selector = useSelector((state) => state.category);
+    const categorySelector = useSelector((state) => state.category);
+    const dispatch = useDispatch();
     const categories = selector.categories;
     const [formData, setFormData] = useState({
         category: "",
@@ -11,7 +13,11 @@ const LoanForm = () => {
         loanPeriod: "",
     });
 
-    const handleChange = (e) => {
+    const handleCategorySelect = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+    const handleSubCategorySelect = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -41,7 +47,18 @@ const LoanForm = () => {
                         className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         {categories.map((item) => {
-                            return <option key={category.id} value={category.title}>{category.title}</option>
+                            return <option key={category.id} value={category.title} onSelect={dispatch(setSelectedCategory(item.title))}>{category.title}</option>
+                        })}
+                    </select>
+                    <select
+                        id="subCategory"
+                        name="subCategory"
+                        value={formData.category}
+                        onChange={handleCategorySelect}
+                        className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        {categories.map((item) => {
+                            return <option key={category.id} value={category.title} onSelect={dispatch(setSelectedCategory(item.title))}>{category.title}</option>
                         })}
                     </select>
                 </div>
@@ -54,7 +71,7 @@ const LoanForm = () => {
                         id="subCategory"
                         name="subCategory"
                         value={formData.subCategory}
-                        onChange={handleChange}
+                        onChange={handleSubCategorySelect}
                         className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         {
